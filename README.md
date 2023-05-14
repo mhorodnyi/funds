@@ -24,3 +24,7 @@ big responsibility which can be taken by separated unit (class or library).
 
 * Introduce integration tests with testcontainers - it improves tests coverage and feedback from our
 pipelines.
+
+* Make Authorization - limit access for user who shouldn`t get it.
+
+* Introduce JWT - it can contain data which can help authorize and improve security.
