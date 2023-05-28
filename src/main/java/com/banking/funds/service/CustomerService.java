@@ -10,20 +10,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
 @AllArgsConstructor
 public class CustomerService {
     private CustomerRepository customerRepository;
     private WalletRepository walletRepository;
+    private CustomerMapper customerMapper;
 
+    @Transactional
     public int signUp(CustomerDto customerDto) {
-        Customer customer = new Customer();
+        Customer customer = customerMapper.customerDtoToEntity(customerDto);
         Wallet wallet = new Wallet();
 
-        customer.setFirstName(customerDto.getFirstName());
-        customer.setLastName(customerDto.getLastName());
-
-        customer.linkWallet(wallet);
+        wallet.linkCustomer(customer);
 
         customerRepository.save(customer);
 

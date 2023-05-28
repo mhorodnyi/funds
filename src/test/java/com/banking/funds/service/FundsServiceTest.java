@@ -44,19 +44,16 @@ public class FundsServiceTest {
                 .amount(2000 * 100)
                 .build();
 
-        Customer customer = Customer.builder()
-                .firstName("John")
-                .lastName("Doe")
-                .build();
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setLastName("Doe");
 
-        Wallet wallet = Wallet.builder()
-                .id(1)
-                .amount(6000 * 100)
-                .customer(customer)
-                .build();
+        Wallet wallet = new Wallet();
+        wallet.increaseAmount(6000 * 100);
+        wallet.linkCustomer(customer);
 
-        when(walletRepository.findById(1)).thenReturn(Optional.of(wallet));
-        when(transactionRepository.withdrawCountByWalletId(1)).thenReturn(Optional.of(0L));
+        when(walletRepository.findById(anyInt())).thenReturn(Optional.of(wallet));
+        when(transactionRepository.withdrawCountByWalletId(anyInt())).thenReturn(Optional.of(0L));
         when(walletRepository.save(wallet)).thenReturn(wallet);
         when(transactionRepository.save(any(Transaction.class))).thenReturn(null);
 
@@ -70,19 +67,16 @@ public class FundsServiceTest {
                 .amount(2000 * 100)
                 .build();
 
-        Customer customer = Customer.builder()
-                .firstName("John")
-                .lastName("Doe")
-                .build();
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setLastName("Doe");
 
-        Wallet wallet = Wallet.builder()
-                .id(1)
-                .amount(6000 * 100)
-                .customer(customer)
-                .build();
+        Wallet wallet = new Wallet();
+        wallet.increaseAmount(6000 * 100);
+        wallet.linkCustomer(customer);
 
-        when(walletRepository.findById(1)).thenReturn(Optional.of(wallet));
-        when(transactionRepository.withdrawCountByWalletId(1)).thenReturn(Optional.of(0L));
+        when(walletRepository.findById(anyInt())).thenReturn(Optional.of(wallet));
+        when(transactionRepository.withdrawCountByWalletId(anyInt())).thenReturn(Optional.of(0L));
         when(walletRepository.save(wallet)).thenReturn(wallet);
         when(transactionRepository.save(any(Transaction.class))).thenReturn(null);
 
@@ -91,7 +85,7 @@ public class FundsServiceTest {
         subject.withdraw(withdrawDto);
 
         order.verify(walletRepository).findById(1);
-        order.verify(transactionRepository).withdrawCountByWalletId(1);
+        order.verify(transactionRepository).withdrawCountByWalletId(0);
         order.verify(walletRepository).save(wallet);
     }
 
@@ -114,19 +108,16 @@ public class FundsServiceTest {
                 .amount(2000 * 100)
                 .build();
 
-        Customer customer = Customer.builder()
-                .firstName("John")
-                .lastName("Doe")
-                .build();
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setLastName("Doe");
 
-        Wallet wallet = Wallet.builder()
-                .id(1)
-                .amount(6000 * 100)
-                .customer(customer)
-                .build();
+        Wallet wallet = new Wallet();
+        wallet.increaseAmount(6000 * 100);
+        wallet.linkCustomer(customer);
 
-        when(walletRepository.findById(1)).thenReturn(Optional.of(wallet));
-        when(transactionRepository.withdrawCountByWalletId(1)).thenReturn(Optional.of(400000L));
+        when(walletRepository.findById(anyInt())).thenReturn(Optional.of(wallet));
+        when(transactionRepository.withdrawCountByWalletId(anyInt())).thenReturn(Optional.of(400000L));
 
         Assertions.assertThrows(DailyWithdrawLimitExceededException.class, () -> subject.withdraw(withdrawDto));
     }
@@ -138,19 +129,16 @@ public class FundsServiceTest {
                 .amount(2000 * 100)
                 .build();
 
-        Customer customer = Customer.builder()
-                .firstName("John")
-                .lastName("Doe")
-                .build();
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setLastName("Doe");
 
-        Wallet wallet = Wallet.builder()
-                .id(1)
-                .amount(10000 * 100)
-                .customer(customer)
-                .build();
+        Wallet wallet = new Wallet();
+        wallet.increaseAmount(10000 * 100);
+        wallet.linkCustomer(customer);
 
-        when(walletRepository.findById(1)).thenReturn(Optional.of(wallet));
-        when(transactionRepository.withdrawCountByWalletId(1)).thenReturn(Optional.of(0L));
+        when(walletRepository.findById(anyInt())).thenReturn(Optional.of(wallet));
+        when(transactionRepository.withdrawCountByWalletId(anyInt())).thenReturn(Optional.of(0L));
         when(walletRepository.save(wallet)).thenReturn(wallet);
         when(transactionRepository.save(any(Transaction.class))).thenReturn(null);
 
@@ -167,19 +155,16 @@ public class FundsServiceTest {
                 .amount(2000 * 100)
                 .build();
 
-        Customer customer = Customer.builder()
-                .firstName("John")
-                .lastName("Doe")
-                .build();
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setLastName("Doe");
 
-        Wallet wallet = Wallet.builder()
-                .id(1)
-                .amount(10000 * 100)
-                .customer(customer)
-                .build();
+        Wallet wallet = new Wallet();
+        wallet.increaseAmount(10000 * 100);
+        wallet.linkCustomer(customer);
 
-        when(walletRepository.findById(1)).thenReturn(Optional.of(wallet));
-        when(transactionRepository.withdrawCountByWalletId(1)).thenReturn(Optional.of(0L));
+        when(walletRepository.findById(anyInt())).thenReturn(Optional.of(wallet));
+        when(transactionRepository.withdrawCountByWalletId(anyInt())).thenReturn(Optional.of(0L));
         when(walletRepository.save(wallet)).thenReturn(wallet);
         when(transactionRepository.save(any(Transaction.class))).thenReturn(null);
 
@@ -196,16 +181,13 @@ public class FundsServiceTest {
                 .amount(12000 * 100)
                 .build();
 
-        Customer customer = Customer.builder()
-                .firstName("John")
-                .lastName("Doe")
-                .build();
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setLastName("Doe");
 
-        Wallet wallet = Wallet.builder()
-                .id(1)
-                .amount(20000 * 100)
-                .customer(customer)
-                .build();
+        Wallet wallet = new Wallet();
+        wallet.increaseAmount(20000 * 100);
+        wallet.linkCustomer(customer);
 
         when(walletRepository.findById(1)).thenReturn(Optional.of(wallet));
         when(walletRepository.save(wallet)).thenReturn(wallet);
@@ -224,16 +206,13 @@ public class FundsServiceTest {
                 .amount(9000 * 100)
                 .build();
 
-        Customer customer = Customer.builder()
-                .firstName("John")
-                .lastName("Doe")
-                .build();
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setLastName("Doe");
 
-        Wallet wallet = Wallet.builder()
-                .id(1)
-                .amount(20000 * 100)
-                .customer(customer)
-                .build();
+        Wallet wallet = new Wallet();
+        wallet.increaseAmount(20000 * 100);
+        wallet.linkCustomer(customer);
 
         when(walletRepository.findById(1)).thenReturn(Optional.of(wallet));
         when(walletRepository.save(wallet)).thenReturn(wallet);
@@ -252,16 +231,13 @@ public class FundsServiceTest {
                 .amount(9000 * 100)
                 .build();
 
-        Customer customer = Customer.builder()
-                .firstName("John")
-                .lastName("Doe")
-                .build();
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setLastName("Doe");
 
-        Wallet wallet = Wallet.builder()
-                .id(1)
-                .amount(20000 * 100)
-                .customer(customer)
-                .build();
+        Wallet wallet = new Wallet();
+        wallet.increaseAmount(20000 * 100);
+        wallet.linkCustomer(customer);
 
         when(walletRepository.findById(1)).thenReturn(Optional.of(wallet));
         when(walletRepository.save(wallet)).thenReturn(wallet);
@@ -280,16 +256,13 @@ public class FundsServiceTest {
                 .amount(2000 * 100)
                 .build();
 
-        Customer customer = Customer.builder()
-                .firstName("John")
-                .lastName("Doe")
-                .build();
+        Customer customer = new Customer();
+        customer.setFirstName("John");
+        customer.setLastName("Doe");
 
-        Wallet wallet = Wallet.builder()
-                .id(1)
-                .amount(6000 * 100)
-                .customer(customer)
-                .build();
+        Wallet wallet = new Wallet();
+        wallet.increaseAmount(6000 * 100);
+        wallet.linkCustomer(customer);
 
         when(walletRepository.findById(1)).thenReturn(Optional.of(wallet));
         when(walletRepository.save(wallet)).thenReturn(wallet);

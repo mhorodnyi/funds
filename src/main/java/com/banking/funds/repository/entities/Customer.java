@@ -7,22 +7,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class Customer {
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @Getter
+    @Setter
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
+    @Getter
+    @Setter
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
+    @Getter
     @Column(name = "is_suspicious", nullable = false)
     private boolean isSuspicious = false;
 
@@ -32,8 +33,7 @@ public class Customer {
     @OneToOne(mappedBy = "customer")
     private BlockedCustomers blockedCustomers;
 
-    public void linkWallet(Wallet wallet) {
-        wallet.setCustomer(this);
+    public void addWallet(Wallet wallet) {
         wallets.add(wallet);
     }
 }
